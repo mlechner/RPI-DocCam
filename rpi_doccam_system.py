@@ -15,7 +15,7 @@ PAGE="""\
 <title>RaspberryPI based Dokumentenkamera (EL-Pi)</title>
 </head>
 <body>
-<center><img id="doccam" src="stream.mjpg" width="640" height="480" style="transform:rotate(90deg); onclick="rotateImage();""></center>
+<center><img id="doccam" src="stream.mjpg" width="640" height="480" style="transform:rotate(90deg);" onclick="rotateImage();"></center>
 <script>
     function rotateImage() {
         var img = document.getElementById('doccam');
