@@ -17,9 +17,12 @@ PAGE="""\
 <body>
 <center><img id="doccam" src="stream.mjpg" width="640" height="480" style="transform:rotate(90deg);" onclick="rotateImage();"></center>
 <script>
+    var counter = 1;
     function rotateImage() {
         var img = document.getElementById('doccam');
-        img.style.transform = 'rotate(90deg)';
+        console.log(img.style.transform);
+        img.style.transform = 'rotate(' + 90 * counter + 'deg)';
+        counter += 1;
     }
 </script>
 </body>
