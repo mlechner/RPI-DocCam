@@ -1,0 +1,12 @@
+[Unit]
+Description=RPI DocCam Service
+After=network.target rpi-doccam.socket
+Requires=rpi-doccam.socket
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 %h/development/RPI-DocCam/rpi-doccam-server.py
+TimeoutStopSec=5
+
+[Install]
+WantedBy=default.target
