@@ -1,7 +1,6 @@
 [Unit]
 Description=RPI DocCam Service
-After=network.target rpi-doccam.socket
-Requires=rpi-doccam.socket
+After=network.target
 
 [Service]
 Type=simple

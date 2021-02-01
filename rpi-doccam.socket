@@ -1,9 +1,0 @@
-[Unit]
-Description=RPI-DocCam Socket
-PartOf=rpi-doccam.service
-
-[Socket]
-ListenStream=127.0.0.1:8000
-
-[Install]
-WantedBy=sockets.target
