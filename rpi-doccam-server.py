@@ -3,6 +3,7 @@
 # http://picamera.readthedocs.io/en/latest/recipes2.html#web-streaming
 
 import io
+import os
 import picamera
 import logging
 import socketserver
@@ -16,6 +17,7 @@ PAGE = """\
 </head>
 <body>
 <center><img id="doccam" src="stream.mjpg" width="640" height="480" style="transform:rotate(90deg);" onclick="rotateImage();"></center>
+<center><button onclick="window.location.href='./shutdown.html'">Shutdown RPI-DocCam</button></center>
 <script>
     var counter = 1;
     function rotateImage() {
@@ -68,6 +70,7 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.send_header('Content-Length', len(content))
             self.end_headers()
             self.wfile.write(content)
+            os.system("sudo shutdown now")
         elif self.path == '/stream.mjpg':
             self.send_response(200)
             self.send_header('Age', 0)
