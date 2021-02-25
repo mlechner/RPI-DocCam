@@ -11,21 +11,58 @@ from threading import Condition
 from http import server
 
 PAGE = """\
-<html>
+<!DOCTYPE html>
+<html lang="de">
 <head>
-<title>RaspberryPI based Dokumentenkamera (EL-Pi)</title>
+  <meta http-equiv=content-type content="text/html; charset=utf-8" />
+  <meta http-equiv="Cache-Control" content="private, no-transform" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>RaspberryPI based Dokumentenkamera (EL-Pi)</title>
+  <style>
+    #header {
+      position: absolute;
+	  text-align: center;
+	  font-family: Arial, Helvetica, sans-serif;
+	  z-index: 1;
+    }
+	#content {
+	  position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+	  bottom: 0;
+      margin: 0;
+	}
+	#footer {
+	  position: absolute;
+	  bottom: 5px;
+	  font-family: Arial, Helvetica, sans-serif;
+	}
+	#content img{
+	  position: relative;
+	  top: 0px;
+	  width: 100%;
+	  height: 100%;
+	}
+  </style>
 </head>
 <body>
-<center><img id="doccam" src="stream.mjpg" width="640" height="480" style="transform:rotate(90deg);" onclick="rotateImage();"></center>
-<center><button onclick="window.location.href='./shutdown.html'">Shutdown RPI-DocCam</button></center>
+	<div id="header">RPI DocCam</div>
+	<div id="content"><img id="doccam" src="stream.mjpg"></div>
+  <div id="footer"><button onclick="window.location.href='./shutdown.html'">Shutdown RPI-DocCam</button></div>
 <script>
-    var counter = 1;
-    function rotateImage() {
-        var img = document.getElementById('doccam');
-        console.log(img.style.transform);
-        img.style.transform = 'rotate(' + 90 * counter + 'deg)';
-        counter += 1;
-    }
+  var counter;
+	counter = 0;
+	var img = document.getElementById('doccam');
+	img.style.transform = 'rotate(' + 90 * (counter + 1) + 'deg)';
+	img.onclick = function() {
+		console.log(counter);
+    console.log(img.style.transform);
+    img.style.transform = 'rotate(' + 90 * (counter + 1) + 'deg)';
+		console.log(img.style.transform);
+    counter += 1;
+		console.log(counter);
+  }
 </script>
 </body>
 </html>
