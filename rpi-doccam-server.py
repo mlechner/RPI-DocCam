@@ -10,63 +10,7 @@ import socketserver
 from threading import Condition
 from http import server
 
-PAGE = """\
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta http-equiv=content-type content="text/html; charset=utf-8" />
-  <meta http-equiv="Cache-Control" content="private, no-transform" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>RaspberryPI based Dokumentenkamera (EL-Pi)</title>
-  <style>
-    #header {
-      position: absolute;
-	  text-align: center;
-	  font-family: Arial, Helvetica, sans-serif;
-	  z-index: 1;
-    }
-	#content {
-	  position: absolute;
-      width: 100%;
-      top: 0;
-      left: 0;
-	  bottom: 0;
-      margin: 0;
-	}
-	#footer {
-	  position: absolute;
-	  bottom: 5px;
-	  font-family: Arial, Helvetica, sans-serif;
-	}
-	#content img{
-	  position: relative;
-	  top: 0px;
-	  width: 100%;
-	  height: 100%;
-	}
-  </style>
-</head>
-<body>
-	<div id="header">RPI DocCam</div>
-	<div id="content"><img id="doccam" src="stream.mjpg"></div>
-  <div id="footer"><button onclick="window.location.href='./shutdown.html'">Shutdown RPI-DocCam</button></div>
-<script>
-  var counter;
-	counter = 0;
-	var img = document.getElementById('doccam');
-	img.style.transform = 'rotate(' + 90 * (counter + 1) + 'deg)';
-	img.onclick = function() {
-		console.log(counter);
-    console.log(img.style.transform);
-    img.style.transform = 'rotate(' + 90 * (counter + 1) + 'deg)';
-		console.log(img.style.transform);
-    counter += 1;
-		console.log(counter);
-  }
-</script>
-</body>
-</html>
-"""
+PAGE = open('page.html', 'r').read()
 
 
 class StreamingOutput(object):
@@ -142,7 +86,7 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
+    with picamera.PiCamera(resolution='1024x768', framerate=24) as camera:
         output = StreamingOutput()
         # Uncomment the next line to change your Pi's Camera rotation (in degrees)
         # camera.rotation = 90
