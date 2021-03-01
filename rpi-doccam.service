@@ -3,8 +3,9 @@ Description=RPI DocCam Service
 After=network.target
 
 [Service]
+WorkingDirectory=%h/development/RPI-DocCam/
 Type=simple
-ExecStart=/usr/bin/python3 %h/development/RPI-DocCam/rpi-doccam-server.py
+ExecStart=/usr/bin/python3 %h/development/RPI-DocCam/rpi-doccam-server.py > %h/development/RPI-DocCam/rpi-doccam-server.log 2>&1
 TimeoutStopSec=5
 
 [Install]

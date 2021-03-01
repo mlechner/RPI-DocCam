@@ -10,7 +10,7 @@ import socketserver
 from threading import Condition
 from http import server
 
-PAGE = open('page.html', 'r').read()
+PAGE = open('./page.html', 'r').read()
 
 
 class StreamingOutput(object):
